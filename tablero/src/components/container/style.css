@@ -1,0 +1,27 @@
+.input-date__container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-selector{
+    width: 300px;
+    height: 30px;
+}
+
+.main__container {
+    display: flex;
+    flex-direction: row;
+}
+
+.input__container{
+    display: flex;
+}
+
+.search-icon {
+    position: absolute;
+    color: gray;
+    align-self: center;
+    margin-left: 0.5rem;
+}

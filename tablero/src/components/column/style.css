@@ -1,0 +1,29 @@
+.column__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 450px;
+    background-color: #f6f8fa;
+    margin: 1rem;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    /* overflow: scroll */
+}
+
+.header__column{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5rem;
+}
+
+.counter-title{
+    display: flex;
+}
+.counter {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color:#E4E7EA;
+    margin-right: 0.5rem;
+}
