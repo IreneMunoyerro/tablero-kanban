@@ -1,30 +1,31 @@
 import './style.css'
 import Task from '../task'
 import Form from '../form';
+import { TasksContext } from '../../context/task.context';
 import {AiOutlinePlus } from 'react-icons/ai';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { BsEmojiExpressionlessFill } from 'react-icons/bs';
 
 function Column ({c}) {
 
 const[form, updateForm] = useState(false)
-const [task, setTask] = useState([]);
+// const [task, setTask] = useState([]);
 
 const openForm = () => {
 updateForm(true)
 }
 
-const addTask = (e) => {
+// const addTask = (e) => {
 
-    e.preventDefault();
-    const newTask = {
-        // id,
-        // title,
-        // state,
-        // creation
-    }
-    setTask((prevTask) => [...prevTask, newTask]) 
-}
+//     e.preventDefault();
+//     const newTask = {
+//         // id,
+//         // title,
+//         // state,
+//         // creation
+//     }
+//     setTask((prevTask) => [...prevTask, newTask]) 
+// }
 
     return(
         <>
