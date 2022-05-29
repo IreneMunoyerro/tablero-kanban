@@ -1,26 +1,18 @@
 import './style.css'
 import { useState } from 'react'
+import Task from '../task'
 
 function Form({addTask}) {
     
-    const [ taskTitle, setTaskTitle] = useState('')
-
-    const setTitle = e => {
+    const getValue = e => {
         let valor = e.target.value
-        console.log(valor)
-        setTaskTitle(valor)
+        console.log(valor)  
     }
-
-    const [text, enableButton] = useState("");
-
-    const handleTextChange = (event) => {
-        enableButton(event.target.value);
-    };
  
     return(
         <>
         <form action="">
-            <textarea onChange={setTitle} id="txt" cols="30" rows="10" placeholder='Enter a note' value={text}></textarea>
+            <textarea onChange={getValue} id="txt" cols="30" rows="10" placeholder='Enter a note'></textarea>
             <button onClick={addTask}>Add</button>
             <button>Cancel</button>
         </form>

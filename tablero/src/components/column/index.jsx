@@ -8,7 +8,6 @@ import { BsEmojiExpressionlessFill } from 'react-icons/bs';
 function Column ({c}) {
 
 const[form, updateForm] = useState(false)
-
 const [task, setTask] = useState([]);
 
 const openForm = () => {
@@ -18,16 +17,13 @@ updateForm(true)
 const addTask = (e) => {
 
     e.preventDefault();
-
     const newTask = {
         // id,
         // title,
         // state,
         // creation
     }
-
     setTask((prevTask) => [...prevTask, newTask]) 
-   
 }
 
     return(

@@ -4,9 +4,7 @@ import { FaRegDotCircle } from 'react-icons/fa';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import { useState } from 'react';
 
-
-
-function Task({}) {
+function Task({task}) {
 
     const creationTime = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`
 
