@@ -4,15 +4,9 @@ import { AiOutlineSearch } from 'react-icons/ai';
 
 function Container () {
 
-    const date = new Date();
-    const [month, day] = [date.getMonth(), date.getDate()];
-
-    console.log(month)
-
-    // date.toLocaleString()
-
-    // Date.prototype.toDateString()
-    //.toLocaleString()
+  const date = new Date();
+    const [month, day] = [(date.getMonth()), date.getDate()];
+    const wrtMonth = new Intl.DateTimeFormat('en-EN', { month: 'short'}).format(new Date());
 
     let arraycolumnas = [
         { id:1,
@@ -33,7 +27,7 @@ function Container () {
         <section className='input-date__container'>
         <article>
             <p>Version 1.0</p>
-            <p>UPDATE ON {day} {month}</p>
+            <p>Updated on {day} {wrtMonth}</p>
         </article>
         <div className='input__container'>
         <div className='search-icon'>
