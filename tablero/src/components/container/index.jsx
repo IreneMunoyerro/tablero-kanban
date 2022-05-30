@@ -1,26 +1,46 @@
 import './style.css'
 import Column from '../column'
 import { AiOutlineSearch } from 'react-icons/ai';
+import { useState } from 'react';
+import Task from '../task';
 
 function Container () {
 
-  const date = new Date();
+  let arraycolumnas = [
+    { id:'todo',
+      title: 'To do',
+      array: [<Task></Task>]
+    },
+
+    { id:'inprogress',
+      title: 'In progress',
+      array: [Task]
+    },
+
+    { id:'done',
+      title: 'Done',
+      array: [Task]
+    }
+]
+
+    const date = new Date();
     const [month, day] = [(date.getMonth()), date.getDate()];
     const wrtMonth = new Intl.DateTimeFormat('en-EN', { month: 'short'}).format(new Date());
 
-    let arraycolumnas = [
-        { id:1,
-          title: 'To do'
-        },
+    const [task, setTask] = useState([]);
 
-        { id:2,
-          title: 'In progress'
-        },
+    const onAddTask = () => {
 
-        { id:3,
-          title: 'Done'
-        }
-    ]
+      const taskCard = {
+          // id,
+          // title
+          // state,
+          // creation
+      }
+  
+     setTask(taskCard) //push
+    
+  }
 
     return(
         <>
@@ -43,10 +63,8 @@ function Container () {
 
             <main className='main__container'>
 
-                {arraycolumnas.map(c => <Column key={c.id} c={c}></Column>)}
-            {/* <Column></Column>
-            <Column></Column>
-            <Column></Column> */}
+                {arraycolumnas.map(c => <Column key={c.id} c={c} onAddTask={onAddTask}></Column>)}
+           
             </main>
            
 

@@ -1,30 +1,32 @@
 import './style.css'
 import Task from '../task'
-import Form from '../form';
-import { TasksContext } from '../../context/task.context';
 import {AiOutlinePlus } from 'react-icons/ai';
 import { useState, useContext } from 'react';
 import { BsEmojiExpressionlessFill } from 'react-icons/bs';
 
-function Column ({c}) {
+function Column ({c, onAddTask}) {
 
 const[form, updateForm] = useState(false)
-// const [task, setTask] = useState([]);
+
+// const [text, enableButton] = useState("");
 
 const openForm = () => {
 updateForm(true)
 }
 
-// const addTask = (e) => {
+const handleSubmit = (e) =>{
+e.preventDefault()
+const valor = e.target.title.value
+const id = c.id
+onAddTask(valor, id)
+} 
 
-//     e.preventDefault();
-//     const newTask = {
-//         // id,
-//         // title,
-//         // state,
-//         // creation
-//     }
-//     setTask((prevTask) => [...prevTask, newTask]) 
+// const handleReset = (e) => {
+// e.preventDefault()
+// }
+
+// const handleButton = (e) => {
+//     enableButton(e.target.title.value);
 // }
 
     return(
@@ -41,17 +43,25 @@ updateForm(true)
                     <span onClick={openForm}><AiOutlinePlus></AiOutlinePlus></span>
                 </section>
 
-                { form?
-                <Form openForm={openForm} addTask={addTask}></Form>
-                : ''
-                }
-
                 {
-                 task.map((t,i) => <Task key={i} task={t}></Task>)
+                form?
+                        <form  openForm={openForm} onSubmit={handleSubmit} >
+                            <textarea name='title' cols="30" rows="10" placeholder='Enter a note'></textarea>
+                            <div className='buttons-form__container'>
+                                <button type='submit'>Add</button>
+                                <button type='reset'>Cancel</button>
+                            </div>
+                        </form>
+                    : ''
                 }
 
+                {/* onReset={handleReset}
+                onChange={handleButton}
+                 */}
 
-             
+                {/* {
+                 task.map((t,i) => <Task key={i} task={t}></Task>)
+                } */}
 
             </div>
         </>
