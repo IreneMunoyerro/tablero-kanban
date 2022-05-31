@@ -8,8 +8,6 @@ function Container () {
 
   const [date, updateDate] = useState("");
 
-
-  
   const onUpdateDate = () => {
     const today = new Date();
     const fecha = today.getDate() + (" ") + new Intl.DateTimeFormat('en-EN', { month: 'short'}).format(new Date());
@@ -30,27 +28,19 @@ function Container () {
    
     }
 ]
-// const filter = e => {
-//   const val = e.target.value.toLowerCase(); // valor del input
-//   const arrFiltered=taskFilter.filter(c=>c.name.toLowerCase().includes(val))
-//   updateTaskFiltered(arrFiltered)
-// }
- 
 
-    const childToParent = (childdata) => {
-      setCard(childdata);
-    }
+  //   const childToParent = (childdata) => {
+  //     setCard(childdata);
+  //   }
   
-    function handleAction(event) {
-      console.log('Child did:', event);
-  }
+  //   function handleAction(event) {
+  //     console.log('Child did:', event);
+  // }
 
-  
-     const handleComunication = ()=>{
-      console.log('funcion de prueba');
-    };
+  //    const handleComunication = ()=>{
+  //     console.log('funcion de prueba');
+  //   };
 
-   
     return(
         <>
 
@@ -79,8 +69,7 @@ function Container () {
                 {arraycolumnas.map(c => <Column key={c.id} c={c} onUpdateDate={onUpdateDate} ></Column>)}
            
             </main>
-           
-
+          
         </>
     )
 }
