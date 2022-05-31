@@ -8,6 +8,8 @@ function Container () {
 
   const [date, updateDate] = useState("");
 
+  const [filtro, filterByTitle] = useState();
+
   const onUpdateDate = () => {
     const today = new Date();
     const fecha = today.getDate() + (" ") + new Intl.DateTimeFormat('en-EN', { month: 'short'}).format(new Date());
@@ -53,13 +55,16 @@ function Container () {
             <p>Version 1.0 </p>
             <p>Updated on {date}</p>
         </article>
-        <div className='input__container'>
-        <div className='search-icon'>
-        <AiOutlineSearch></AiOutlineSearch>
-        </div>
-        
-        <input className='task-selector' type="text"  placeholder='      Filter Cards'  />
-        </div>
+
+          <div className='input__container'>
+
+            <div className='search-icon'>
+              <AiOutlineSearch></AiOutlineSearch>
+            </div>
+
+            <input onChange={filterByTitle} className='task-selector' type="text" placeholder='Filter Cards' value={filtro}/>
+
+          </div>
        
         </section>
           {/* childToParent={childToParent} */}

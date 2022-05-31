@@ -7,9 +7,12 @@ import { useState} from 'react';
 function Column({c, onUpdateDate}) {
 
     const [form, updateForm] = useState(false)
-    const [task, setTask] = useState([]);
+
     const [text, enableButton] = useState("");
-    const [taskFilter, updateTaskFiltered]= useState([])
+
+    const [task, setTask] = useState([]);
+
+    const [taskFiltered, updateTaskFiltered]= useState([])
 
 
     const openForm = () => {
@@ -48,7 +51,7 @@ function Column({c, onUpdateDate}) {
         setTask((prevTasks) => prevTasks.filter(task => task.id !== id)) // filtra los que no cumplen el id
     }
 
-    const filter = e => {
+    const filterByTitle = e => {
         const val = e.target.value.toLowerCase(); // valor del input
         const arrFiltered=task.filter(c=>c.title.toLowerCase().includes(val))
         updateTaskFiltered(arrFiltered)
@@ -76,18 +79,10 @@ function Column({c, onUpdateDate}) {
                             <div className='buttons-form__container'>
                                 <button type='submit'className='addButton' disabled={!text}>Add</button>
                                 <button type='reset' className='cancelButton'>Cancel</button>
-
-
-
-
                             </div>
                         </form>
                         : ''
                 }
-
-                {/* onReset={handleReset}
-                onChange={handleButton}
-                 */}
 
                 {
                     task.map((t, i) => <Task key={i} task={t} onDeleteTask={onDeleteTask}></Task>)

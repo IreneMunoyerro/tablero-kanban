@@ -1,10 +1,15 @@
 .task__container{
-    width: 95%;
-    height: 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 85%;
+    min-height: 6rem;
     border-radius: 5px;
-    border: 1px solid lightgray;
+    border: 1px solid rgba(27,31,35,0.15);
     background-color: white;
     align-self: center;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 .task-title{
@@ -12,15 +17,6 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-}
-
-.task__container{
-    width: 95%;
-    height: 6rem;
-    border-radius: 5px;
-    border: 1px solid rgba(27,31,35,0.15);
-    background-color: white;
-    align-self: center;
 }
 
 .task-title{
@@ -31,11 +27,16 @@
 }
 
 .task-text{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
     color: #0366d6;
     font-weight: bold;
 }
 
 .task-created{
+    display: flex;
+    margin-left: 0.5rem;
     color: grey
 }
 
@@ -49,3 +50,4 @@
     color: red;
 
 }
+
