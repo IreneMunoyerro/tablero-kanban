@@ -27,7 +27,10 @@
     border-radius: 50%;
     background-color:#E4E7EA;
     margin-right: 0.5rem;
+    display: flex;
+    justify-content: center;
 }
+
 
 
 .addButton{
