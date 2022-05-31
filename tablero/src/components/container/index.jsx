@@ -27,16 +27,29 @@ function Container () {
     const [month, day] = [(date.getMonth()), date.getDate()];
     const wrtMonth = new Intl.DateTimeFormat('en-EN', { month: 'short'}).format(new Date());
 
-    const [task, setTask] = useState([]);
+    
+    const [card, setCard] = useState([]);
+    
 
+    const childToParent = (childdata) => {
+      setCard(childdata);
+    }
+  //   function handleAction(event) {
+  //     console.log('Child did:', event);
+  // }
+
+  
+        
+    const handleComunication = ()=>{
+      console.log('funcion de prueba');
+    };
+    
     const onAddTask = () => {
-
-      const taskCard = {
-          // id,
-          // title
-          // state,
-          // creation
-      }
+    
+      
+      // const taskCard = {
+          
+      // }
   
      setTask(taskCard) //push
     
@@ -44,9 +57,14 @@ function Container () {
 
     return(
         <>
+
+        {/* <Column onAction={handleAction} /> */}
+
+        {/* <Column onAction={handleComunication} /> */}
+
         <section className='input-date__container'>
         <article>
-            <p>Version 1.0</p>
+            <p>Version 1.0 {JSON.stringify({card})}</p>
             <p>Updated on {day} {wrtMonth}</p>
         </article>
         <div className='input__container'>
@@ -63,7 +81,7 @@ function Container () {
 
             <main className='main__container'>
 
-                {arraycolumnas.map(c => <Column key={c.id} c={c} onAddTask={onAddTask}></Column>)}
+                {arraycolumnas.map(c => <Column key={c.id} c={c} onAddTask={onAddTask} childToParent={childToParent} ></Column>)}
            
             </main>
            

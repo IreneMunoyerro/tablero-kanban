@@ -4,9 +4,9 @@ import { FaRegDotCircle } from 'react-icons/fa';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import { useState } from 'react';
 
-function Task({}) {
+function Task({task}) {
 
-    const creationTime = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`
+    
 
     return (
         <>
@@ -15,11 +15,12 @@ function Task({}) {
                     <div>
                         <AiOutlineCheckCircle style={{ color: "red" }}></AiOutlineCheckCircle>
                     </div>
-                    <p></p>
+                    <p>{task.title}</p>
+                    <p>{task.date}#{task.id}</p>
                     <span><BsTrash></BsTrash></span>
                 </section>
                 <section className='task-creation'>
-                    <p>#id create on {creationTime}</p>
+                    {/* <p>#id create on {creationTime}</p> */}
                 </section>
             </div>
         </>
