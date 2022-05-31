@@ -1,81 +1,73 @@
 import './style.css'
 import Task from '../task'
-import {AiOutlinePlus } from 'react-icons/ai';
-import { useState, useContext } from 'react';
-import { BsEmojiExpressionlessFill } from 'react-icons/bs';
+import { AiOutlinePlus } from 'react-icons/ai';
+import { useState} from 'react';
+// import { BsEmojiExpressionlessFill } from 'react-icons/bs';
 
-function Column ({c, childToParent }) {
+function Column({c, onUpdateDate}) {
 
-const[form, updateForm] = useState(false)
-const [task, setTask] = useState([]);
-
-
-// const [text, enableButton] = useState("");
-
-const openForm = () => {
-updateForm(true)
-}
+    const [form, updateForm] = useState(false)
+    const [task, setTask] = useState([]);
+    const [text, enableButton] = useState("");
+    const [taskFilter, updateTaskFiltered]= useState([])
 
 
-
-
-const handleSubmit = (e) =>{
-e.preventDefault()
-const valor = e.target.title.value
-const id = c.id
-const creationTime = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`
-const status= c.id === "done" ? "done" : "todo";
-
-// onAddTask(valor, id, creationTime, status)
-// childToParent(data)
-}
-    const onAddTask = (valor, id, creationTime, status,e) => {
-         const newTask = {
-             title: "prueba",
-             date: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`,
-             id: task.length > 0 ? task[task.length - 1].id + 1 : 1,
-             
-            // title: e.target.title.value,
-            // id:c.id,
-            // date: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`,
-            // status: c.id === "done" ? "done" : "todo"
-        }
-        // const valor = e.target.title.value
-        // const id = c.id
-        // const creationTime = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`
-        // const status = c.id === "done" ? "done" : "todo";  
-        setTask(prevTask => [...prevTask, newTask])
+    const openForm = () => {
+        updateForm(true)
     }
-
-
-
-    // const data = {
-    //     id: "7",
-    //     title:"" ,
-    //     date: "eqwew",
-    //     status: "done",
-    // }
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const valor = e.target.title.value
+        const newTask = {
+            title: valor,
+            date: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`,
+            id: task.length > 0 ? task[task.length - 1].id + 1 : 1,
+            status: c.id === "done" ? "done" : "todo",
+        }
+        setTask(prevTask => [...prevTask, newTask])
+        updateForm(false);
+        enableButton("")
+        onUpdateDate()
+    
+        childToParent()
+    }
     
 
-// const handleReset = (e) => {
-// e.preventDefault()
-// }
+    const handleReset = (e) => {
+    e.preventDefault()
+    updateForm(false)
+    enableButton("")
 
-// const handleButton = (e) => {
-//     enableButton(e.target.title.value);
-// }
+    }
 
+    const handleTextChange = (event) => {
+        enableButton(event.target.value);
 
+    };
 
-    return(
-        <>
+    
+
+    const onDeleteTask = (id) => {
+        setTask((prevTasks) => prevTasks.filter(task => task.id !== id)) // filtra los que no cumplen el id
+    }
+
+    const filter = e => {
+        const val = e.target.value.toLowerCase(); // valor del input
+        const arrFiltered=task.filter(c=>c.title.toLowerCase().includes(val))
+        updateTaskFiltered(arrFiltered)
+      }
        
+
+
+    return (
+        <>
+
             <div className='column__container'>
 
                 <section className='header__column'>
 
                     <article className='counter-title'>
-                        <div className='counter'></div>
+                        <div className='counter' >{task.length}</div>
                         <span>{c.title}</span>
                     </article>
 
@@ -83,19 +75,19 @@ const status= c.id === "done" ? "done" : "todo";
                 </section>
 
                 {
-                form?
-                        <form  openForm={openForm} onSubmit={handleSubmit} >
-                            <textarea name='title' cols="30" rows="10" placeholder='Enter a note'></textarea>
+                    form ?
+                        <form openForm={openForm} onSubmit={handleSubmit}  onReset={handleReset} >
+                            <textarea className='textArea' onChange={handleTextChange} name='title' cols="30" rows="10" placeholder='Enter a note' value={text}></textarea>
                             <div className='buttons-form__container'>
-                                <button onClick={onAddTask} type='submit'>Add</button>
-                                <button type='reset'>Cancel</button>
-                                
-                            
+                                <button type='submit'className='addButton' disabled={!text}>Add</button>
+                                <button type='reset' className='cancelButton'>Cancel</button>
 
-                                
+
+
+
                             </div>
                         </form>
-                    : ''
+                        : ''
                 }
 
                 {/* onReset={handleReset}
@@ -103,8 +95,8 @@ const status= c.id === "done" ? "done" : "todo";
                  */}
 
                 {
-                 task.map((t,i) => <Task key={i} task={t}></Task>)
-                } 
+                    task.map((t, i) => <Task key={i} task={t} onDeleteTask={onDeleteTask}></Task>)
+                }
 
             </div>
         </>
