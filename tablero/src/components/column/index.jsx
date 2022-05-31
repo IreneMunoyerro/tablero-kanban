@@ -29,10 +29,9 @@ function Column({c, onUpdateDate}) {
         enableButton("")
         onUpdateDate()
     
-        childToParent()
+        // childToParent()
     }
     
-
     const handleReset = (e) => {
     e.preventDefault()
     updateForm(false)
@@ -45,8 +44,6 @@ function Column({c, onUpdateDate}) {
 
     };
 
-    
-
     const onDeleteTask = (id) => {
         setTask((prevTasks) => prevTasks.filter(task => task.id !== id)) // filtra los que no cumplen el id
     }
@@ -57,8 +54,6 @@ function Column({c, onUpdateDate}) {
         updateTaskFiltered(arrFiltered)
       }
        
-
-
     return (
         <>
 
